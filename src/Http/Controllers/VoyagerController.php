@@ -19,6 +19,11 @@ class VoyagerController extends Controller
         return Voyager::view('voyager::index');
     }
 
+    public function dashboard()
+    {
+        return Voyager::view('voyager::dashboard');
+    }
+
     public function logout()
     {
         Auth::logout();

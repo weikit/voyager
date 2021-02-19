@@ -1,4 +1,43 @@
-let mix = require('laravel-mix');
+const mix = require("laravel-mix");
+let publicPath = "../public/backend";
+
+if (__dirname.indexOf("/modules/") >= 0) {
+  publicPath = "../../public/backend";
+} else if (__dirname.indexOf("/vendor/") >= 0) {
+  publicPath = "../../../public/backend";
+}
+
+mix.setPublicPath(publicPath);
+
+mix
+  .extract(
+    {
+      to: "js/vendor",
+      test(mod) {
+        return /common/.test(mod.nameForCondition());
+      },
+    },
+    "js/vendor"
+  )
+
+  .js(__dirname + "/resources/assets/js/quasar/index.js", "js/quasar.js")
+  .vue({ version: 3 })
+  .extract(
+    [
+      // Vue Common
+      "vue",
+      "axios",
+      "quasar",
+    ],
+    "js/quasar-vendor"
+  )
+
+  .js(__dirname + "/resources/assets/js/bootstrap/index.js", "js/bootstrap.js")
+  .extract(["jquery"], "js/bootstrap-vendor");
+
+if (!mix.inProduction()) {
+  mix.sourceMaps();
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -11,9 +50,12 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.options({ processCssUrls: false }).sass('resources/assets/sass/app.scss', 'publishable/assets/css', { implementation: require('node-sass') })
-.js('resources/assets/js/app.js', 'publishable/assets/js')
-.copy('node_modules/tinymce/skins', 'publishable/assets/js/skins')
-.copy('resources/assets/js/skins', 'publishable/assets/js/skins')
-.copy('node_modules/tinymce/themes/modern', 'publishable/assets/js/themes/modern')
-.copy('node_modules/ace-builds/src-noconflict', 'publishable/assets/js/ace/libs');
+mix;
+
+// .js('resources/assets/js/app.js', 'publishable/assets/js')
+// .vue({ version: 3 })
+// .sass('resources/assets/sass/app.scss', 'publishable/assets/css')
+// .copy('node_modules/tinymce/skins', 'publishable/assets/js/skins')
+// .copy('resources/assets/js/skins', 'publishable/assets/js/skins')
+// .copy('node_modules/tinymce/themes/modern', 'publishable/assets/js/themes/modern')
+// .copy('node_modules/ace-builds/src-noconflict', 'publishable/assets/js/ace/libs');

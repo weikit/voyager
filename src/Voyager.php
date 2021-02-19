@@ -265,7 +265,7 @@ class Voyager
 
     public function routes()
     {
-        require __DIR__.'/../routes/voyager.php';
+        require __DIR__ . '/../routes/admin.php';
     }
 
     public function getVersion()
