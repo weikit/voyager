@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh lpR lFf">
+  <q-layout class="wrapper" view="lHh lpR lFf">
     <q-header class="bg-white text-grey-9" bordered height-hint="98">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
@@ -27,24 +27,21 @@
     </q-header>
 
     <q-drawer
-      content-class="bg-grey-10 text-white"
+      class="text-white side-menu"
       show-if-above
       v-model="left"
       side="left"
       behavior="desktop"
-      :width="230"
+      :width="250"
       bordered
     >
-      <q-toolbar class="text-center">
+      <q-toolbar class="app-bar text-center">
         <q-toolbar-title>{{ config.name }}</q-toolbar-title>
       </q-toolbar>
       <q-scroll-area style="height: calc(100% - 50px)" dark>
-        <left-menu
-          v-if="tree"
-          :tree="tree"
-          :activeMenu="activeTab"
-          @nav="toggleTab"
-        />
+        <q-list class="left-menu-list" dark>
+          <menu-item :data="tree" :activeMenu="activeTab" @nav="toggleTab" />
+        </q-list>
       </q-scroll-area>
     </q-drawer>
 
@@ -73,12 +70,13 @@ import { useQuasar } from "quasar";
 import { useConfig } from "../../uses/useConfig";
 import { useAdminMenu } from "../../uses/store/useAdminMenu";
 import { usePageTab } from "../../uses/usePageTab";
-import LeftMenu from "./LeftMenu";
-import PageTab from "./PageTab";
+
+import MenuItem from "./MenuItem.vue";
+import PageTab from "./PageTab.vue";
 
 export default defineComponent({
   components: {
-    LeftMenu,
+    MenuItem,
     PageTab,
   },
   setup() {
@@ -119,36 +117,21 @@ export default defineComponent({
       loadMenu,
     };
   },
-  // data() {
-  //   return {
-  //     left: false,
-  //     height: this.$q.screen.height,
-  //   };
-  // },
-  // created() {
-  //   this.loadTree();
-  // },
-  // computed: {
-  //   ...mapState("menu", ["tree"]),
-  //   ...mapGetters("menu", ["tabs", "activeTab"]),
-  //   style() {
-  //     return { height: this.$q.screen.height + "px" };
-  //   },
-  // },
-  // methods: {
-  //   ...mapActions("menu", ["loadTree", "toggleTab", "removeTab"]),
-  //   refreshPage() {
-  //     const key = `page_${this.activeTab.id}`;
-  //     if (this.$refs[key]) {
-  //       const $el = this.$refs[key][0];
-  //       $el.contentWindow.location.reload(!0);
-  //     }
-  //   },
-  // },
 });
 </script>
 
 <style lang="scss" scoped>
+.wrapper::v-deep {
+  .app-bar {
+    background: #22a7f0;
+    border-color: #22a7f0;
+  }
+  .side-menu {
+    background: #353d47;
+    background: linear-gradient(45deg, #353d47, #21292e);
+  }
+}
+
 .content {
   position: relative;
   height: 100%;

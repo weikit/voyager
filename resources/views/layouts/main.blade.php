@@ -10,6 +10,15 @@
     @yield('meta')
 
     @stack('before-styles')
+    <link rel="stylesheet" href="{{ mix('css/common.css', 'backend') }}">
+@foreach($uiUses as $ui)
+    @if($ui == 'quasar')
+        <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">
+    @elseif ($ui == 'bootstrap')
+        <link rel="stylesheet" href="{{ mix('css/bootstrap.css', 'backend') }}">
+    @endif
+@endforeach
+
     @stack('after-styles')
 </head>
 
@@ -20,24 +29,17 @@
 
     <!-- Scripts -->
     @stack('before-scripts')
-
         <script src="{{ mix('js/manifest.js', 'backend') }}"></script>
         <script src="{{ mix('js/vendor.js', 'backend') }}"></script>
 
 @foreach($uiUses as $ui)
-
     @if($ui == 'quasar')
-
         <script src="{{ mix('js/quasar-vendor.js', 'backend') }}"></script>
         <script src="{{ mix('js/quasar.js', 'backend') }}"></script>
-
     @elseif ($ui == 'bootstrap')
-
         <script src="{{ mix('js/bootstrap-vendor.js', 'backend') }}"></script>
         <script src="{{ mix('js/bootstrap.js', 'backend') }}"></script>
-
     @endif
-
 @endforeach
 
     @stack('after-scripts')

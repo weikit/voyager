@@ -10,6 +10,7 @@ if (__dirname.indexOf("/modules/") >= 0) {
 mix.setPublicPath(publicPath);
 
 mix
+  .sass(__dirname + "/resources/assets/sass/common.scss", "css/common.css")
   .extract(
     {
       to: "js/vendor",
@@ -21,6 +22,10 @@ mix
   )
 
   .js(__dirname + "/resources/assets/js/quasar/index.js", "js/quasar.js")
+  .sass(
+    __dirname + "/resources/assets/sass/quasar/index.scss",
+    "css/quasar.css"
+  )
   .vue({ version: 3 })
   .extract(
     [
@@ -33,6 +38,10 @@ mix
   )
 
   .js(__dirname + "/resources/assets/js/bootstrap/index.js", "js/bootstrap.js")
+  .sass(
+    __dirname + "/resources/assets/sass/bootstrap/index.scss",
+    "css/bootstrap.css"
+  )
   .extract(["jquery"], "js/bootstrap-vendor");
 
 if (!mix.inProduction()) {
