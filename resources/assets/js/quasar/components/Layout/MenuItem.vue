@@ -7,6 +7,7 @@
         :icon="menu.icon_class"
         :label="menu.title"
         expand-separator
+        class="text-item"
       >
         <menu-item
           :data="menu.children"
@@ -21,7 +22,8 @@
         clickable
         v-ripple
         :active="isActive(menu)"
-        active-class="bg-secondary text-orange"
+        class="text-item"
+        active-class="bg-item text-white"
         @click="handleNav(menu)"
       >
         <q-item-section avatar>
@@ -61,24 +63,26 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.menu-item-wrapper {
+<style scoped lang="scss">
+.menu-item-wrapper::v-deep {
   .q-item__section--avatar {
-    color: #768393;
     min-width: 36px;
     padding-left: 0px;
   }
   .q-item__section--avatar .q-icon {
     font-size: 18px;
   }
-
-  .q-item__section--avatar + .q-item__section--main {
-    color: #768393;
+  .bg-item {
+    background-color: #384046;
+  }
+  .text-item {
+    color: #76838f;
+  }
+  .q-item {
     font-size: 16px;
   }
   .q-item:hover {
-    .q-item__section--avatar,
-    .q-item__section--avatar + .q-item__section--main {
+    .q-item__section {
       color: #fff;
     }
   }

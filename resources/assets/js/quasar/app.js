@@ -8,7 +8,6 @@ const app = createApp({
     const $q = useQuasar();
 
     $q.iconMapFn = (iconName) => {
-      console.log(iconName);
       if (iconName.startsWith("voyager") === true) {
         return {
           cls: "icon " + iconName,

@@ -55,7 +55,7 @@
         <iframe
           :ref="(el) => (pages[`page_${tab.id}`] = el)"
           frameborder="0"
-          :src="tab.url"
+          :src="tab.href"
           class="iframe"
         />
       </div>

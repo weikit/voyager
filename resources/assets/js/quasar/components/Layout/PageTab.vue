@@ -1,15 +1,23 @@
 <template>
   <div class="page-tab">
     <q-tabs align="left" :value="activeTab.id" dense no-caps inline-label>
-      <!-- <q-tab name="首页" label="首页" @click.stop></q-tab> -->
       <q-tab
         v-for="tab in tabs"
         :key="tab.id"
         :name="tab.id"
         :label="tab.title"
         @click.stop="switchTab(tab)"
+        :class="{ active: activeTab.id == tab.id }"
       >
-        <q-btn class="close" icon="close" size="xs" flat round dense @click.stop="removeTab(tab)" />
+        <q-btn
+          class="close"
+          icon="close"
+          flat
+          round
+          dense
+          size="xs"
+          @click.stop="removeTab(tab)"
+        />
       </q-tab>
     </q-tabs>
   </div>
@@ -20,12 +28,12 @@ export default {
   props: {
     tabs: {
       type: Array,
-      default: []
+      default: [],
     },
     activeTab: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   methods: {
     switchTab(tab) {
@@ -33,13 +41,13 @@ export default {
     },
     removeTab(tab) {
       this.$emit("remove", tab);
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang="scss">
-.page-tab {
+<style scoped lang="scss">
+.page-tab::v-deep {
   border-top: 1px solid #f6f6f6;
   .q-tabs {
     .q-tabs__arrow--left,
@@ -59,15 +67,21 @@ export default {
     padding: 0 25px;
     border-right: 1px solid #f6f6f6;
     .close {
-      position: absolute;
-      right: -20px;
-      top: 9px;
-      display: none;
+      margin-right: -20px;
+      margin-left: 5px;
+      visibility: hidden;
+    }
+
+    &.active {
+      background-color: #f1f1f1;
+      & .close {
+        visibility: inherit;
+      }
     }
 
     &.q-tab--active .close,
     &:hover .close {
-      display: block;
+      visibility: inherit;
     }
 
     @media (min-width: 1440px) {

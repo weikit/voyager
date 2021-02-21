@@ -15,7 +15,7 @@ export function usePageTab() {
 
   const toggleTab = (tab) => {
     if (!tabs.value.find((_tab) => _tab.id == tab.id)) {
-      state.tabs = [...state.tabs, tab];
+      state.tabs = [...tabs.value, tab];
     }
     state.activeTabId = tab.id;
   };
