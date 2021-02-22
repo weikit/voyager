@@ -10,12 +10,20 @@ if (__dirname.indexOf("/modules/") >= 0) {
 mix.setPublicPath(publicPath);
 
 mix
+  .setResourceRoot("../") // set resource path to /backend/
   .sass(__dirname + "/resources/assets/sass/common.scss", "css/common.css")
   .extract(
     {
       to: "js/vendor",
       test(mod) {
-        return /common/.test(mod.nameForCondition());
+        const modules = ["axios", "lodash-es"];
+        const name = mod.nameForCondition();
+        return (
+          /resources\/assets\/js\/common\//.test(name) ||
+          !!modules.find((moduleName) =>
+            new RegExp(`/node_modules/${moduleName}/`).test(name)
+          )
+        );
       },
     },
     "js/vendor"
@@ -31,7 +39,6 @@ mix
     [
       // Vue Common
       "vue",
-      "axios",
       "quasar",
     ],
     "js/quasar-vendor"
@@ -42,29 +49,14 @@ mix
     __dirname + "/resources/assets/sass/bootstrap/index.scss",
     "css/bootstrap.css"
   )
-  .extract(["jquery"], "js/bootstrap-vendor");
+  .extract(
+    [
+      // Bootstrap Common
+      "jquery",
+    ],
+    "js/bootstrap-vendor"
+  );
 
 if (!mix.inProduction()) {
   mix.sourceMaps();
 }
-
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
-
-mix;
-
-// .js('resources/assets/js/app.js', 'publishable/assets/js')
-// .vue({ version: 3 })
-// .sass('resources/assets/sass/app.scss', 'publishable/assets/css')
-// .copy('node_modules/tinymce/skins', 'publishable/assets/js/skins')
-// .copy('resources/assets/js/skins', 'publishable/assets/js/skins')
-// .copy('node_modules/tinymce/themes/modern', 'publishable/assets/js/themes/modern')
-// .copy('node_modules/ace-builds/src-noconflict', 'publishable/assets/js/ace/libs');

@@ -2,7 +2,7 @@
   <q-layout class="wrapper" view="lHh lpR lFf">
     <q-header class="bg-white text-grey-9" bordered height-hint="98">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="left = !left" />
+        <q-btn dense flat round icon="menu" @click="toggleMenu" />
         <q-btn
           v-if="tabs.length"
           @click.stop="refreshPage"
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, reactive, ref } from "vue";
+import { computed, defineComponent, reactive, ref, toRefs } from "vue";
 import { useQuasar } from "quasar";
 
 import { useConfig } from "../../uses/useConfig";
@@ -86,6 +86,10 @@ export default defineComponent({
 
     const state = reactive({ left: false, height: $q.screen.height });
 
+    const toggleMenu = () => {
+      state.left = !state.left;
+    };
+
     const style = computed(() => ({ height: $q.screen.height + "px" }));
 
     const pages = ref([]);
@@ -104,8 +108,8 @@ export default defineComponent({
     loadMenu();
 
     return {
+      ...toRefs(state),
       config,
-      ...state,
       style,
       pages,
       refreshPage,
@@ -115,6 +119,7 @@ export default defineComponent({
       removeTab,
       tree,
       loadMenu,
+      toggleMenu,
     };
   },
 });
@@ -131,7 +136,6 @@ export default defineComponent({
     background: linear-gradient(45deg, #353d47, #21292e);
   }
 }
-
 .content {
   position: relative;
   height: 100%;

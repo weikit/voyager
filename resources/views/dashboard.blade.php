@@ -1,6 +1,4 @@
-@extends('voyager::layouts.main')
-
-@section('ui_uses', 'quasar')
+@extends('voyager::main')
 
 @section('content')
     <layout-main>
