@@ -29,6 +29,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+@push('after_script')
 <script>
 window.onload = function () {
     // Bulk delete selectors
@@ -68,3 +69,4 @@ window.onload = function () {
     });
 }
 </script>
+@endpush

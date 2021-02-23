@@ -13,6 +13,7 @@
 
 @endsection
 
+@push('after_script')
 <script>
     let defaultOptions = {
         type: 'text',
@@ -76,3 +77,4 @@
         }
     });
 </script>
+@endpush

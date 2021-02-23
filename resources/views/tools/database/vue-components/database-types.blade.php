@@ -15,7 +15,7 @@
 
 
 @endsection
-
+@push('after_script')
 <script>
     let databaseTypes = {!! json_encode($db->types) !!};
 
@@ -62,3 +62,4 @@
         }
     });
 </script>
+@endpush

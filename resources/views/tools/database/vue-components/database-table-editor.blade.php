@@ -92,7 +92,7 @@
 
 @include('voyager::tools.database.vue-components.database-column')
 @include('voyager::tools.database.vue-components.database-table-helper-buttons')
-
+@push('after_script')
 <script>
     Vue.component('database-table-editor', {
         props: {
@@ -286,3 +286,4 @@
         }
     });
 </script>
+@endpush

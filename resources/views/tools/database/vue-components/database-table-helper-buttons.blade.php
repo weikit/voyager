@@ -5,7 +5,7 @@
         <div class="btn btn-success" @click="addSoftDeletes">+ {{ __('voyager::database.add_softdeletes') }}</div>
     </div>
 @endsection
-
+@push('after_script')
 <script>
     Vue.component('database-table-helper-buttons', {
         template: `@yield('database-table-helper-buttons-template')`,
@@ -49,3 +49,4 @@
         }
     });
 </script>
+@endpush

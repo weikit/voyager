@@ -355,6 +355,7 @@
 </div>
 @endsection
 
+@push('after_script')
 <script>
     Vue.component('media-manager', {
         template: `@yield('media-manager')`,
@@ -956,6 +957,9 @@
         },
     });
 </script>
+@endpush
+
+@push('after_style')
 <style>
 .dd-placeholder {
     flex: 1;
@@ -964,3 +968,4 @@
     max-width: 250px;
 }
 </style>
+@endpush

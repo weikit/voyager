@@ -1654,6 +1654,7 @@
     </li>
 </ul>
 
+@push('after_script')
 <script>
 (function() {
     var glyphs, i, len, ref;
@@ -1669,3 +1670,4 @@
     }
 }).call(this);
 </script>
+@endpush

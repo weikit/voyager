@@ -55,6 +55,7 @@
 @include('voyager::tools.database.vue-components.database-types')
 @include('voyager::tools.database.vue-components.database-column-default')
 
+@push('after_script')
 <script>
     Vue.component('database-column', {
         data: function() {
@@ -124,3 +125,4 @@
         },
     });
 </script>
+@endpush
