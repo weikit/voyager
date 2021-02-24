@@ -12,7 +12,18 @@
 
     <link rel="stylesheet" href="{{ mix('css/common.css', 'backend') }}">
 
+    @hasSection('use_quasar')
     <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">
+    @endif
+
+    @hasSection('use_bootstrap')
+        <link rel="stylesheet" href="{{ mix('css/bootstrap.css', 'backend') }}">
+    @endif
+
+    @hasSection('use_layui')
+        <link rel="stylesheet" href="{{ mix('vendor/layui.css', 'backend') }}">
+        <link rel="stylesheet" href="{{ mix('css/layui.css', 'backend') }}">
+    @endif
 
     @stack('after_style')
 </head>
@@ -35,10 +46,22 @@
     @stack('before_script')
 
     <script type="text/javascript" src="{{ mix('js/manifest.js', 'backend') }}"></script>
-    <script type="text/javascript" src="{{ mix('js/vendor.js', 'backend') }}"></script>
+    <script type="text/javascript" src="{{ mix('vendor/common.js', 'backend') }}"></script>
 
-    <script type="text/javascript" src="{{ mix('js/quasar-vendor.js', 'backend') }}"></script>
-    <script type="text/javascript" src="{{ mix('js/quasar.js', 'backend') }}"></script>
+    @hasSection('use_quasar')
+        <script type="text/javascript" src="{{ mix('vendor/quasar.js', 'backend') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/quasar.js', 'backend') }}"></script>
+    @endif
+
+    @hasSection('use_bootstrap')
+        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/bootstrap.js', 'backend') }}"></script>
+    @endif
+
+    @hasSection('use_layui')
+        <script type="text/javascript" src="{{ mix('vendor/layui.js', 'backend') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/layui.js', 'backend') }}"></script>
+    @endif
 
     @stack('after_script')
 </body>

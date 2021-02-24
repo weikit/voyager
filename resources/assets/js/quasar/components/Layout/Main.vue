@@ -1,5 +1,5 @@
 <template>
-  <q-layout class="wrapper" view="lHh lpR lFf">
+  <q-layout view="lHh lpR lFf">
     <q-header class="bg-white text-grey-9" bordered height-hint="98">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleMenu" />
@@ -35,7 +35,7 @@
       :width="250"
       bordered
     >
-      <q-toolbar class="app-bar text-center">
+      <q-toolbar class="title-bar text-center">
         <q-toolbar-title>{{ config.name }}</q-toolbar-title>
       </q-toolbar>
       <q-scroll-area style="height: calc(100% - 50px)" dark>
@@ -126,16 +126,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.wrapper::v-deep {
-  .app-bar {
-    background: #22a7f0;
-    border-color: #22a7f0;
-  }
-  .side-menu {
-    background: #353d47;
-    background: linear-gradient(45deg, #353d47, #21292e);
-  }
+:deep(.title-bar) {
+  background: #22a7f0;
+  border-color: #22a7f0;
 }
+:deep(.side-menu) {
+  background: #353d47;
+  background: linear-gradient(45deg, #353d47, #21292e);
+}
+
 .content {
   position: relative;
   height: 100%;

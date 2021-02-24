@@ -64,30 +64,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.menu-item-wrapper::v-deep {
+:deep(.q-item) {
+  font-size: 16px;
+
+  &:hover .q-item__section {
+    color: #fff;
+  }
   .q-item__section--avatar {
     min-width: 36px;
     padding-left: 0px;
-  }
-  .q-item__section--avatar .q-icon {
-    font-size: 18px;
-  }
-  .bg-item {
-    background-color: #384046;
-  }
-  .text-item {
-    color: #76838f;
-  }
-  .q-item {
-    font-size: 16px;
-  }
-  .q-item:hover {
-    .q-item__section {
-      color: #fff;
+
+    .q-icon {
+      font-size: 18px;
     }
   }
-  .menu-item-wrapper > .q-item {
-    padding-left: 30px;
-  }
+}
+:deep(.bg-item) {
+  background-color: #384046;
+}
+:deep(.text-item) {
+  color: #76838f;
+}
+:deep(.menu-item-wrapper) > .q-item {
+  padding-left: 30px;
 }
 </style>

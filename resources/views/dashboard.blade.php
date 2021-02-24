@@ -1,5 +1,7 @@
 @extends('voyager::main')
 
+@extends('use_quasar', true)
+
 @section('content')
     <layout-main>
         <template v-slot:toolbar-right>

@@ -1,5 +1,7 @@
 @extends('voyager::main')
 
+@section('use_bootstrap', true)
+
 @section('body_class')
     @if(isset($dataType) && isset($dataType->slug)){{ $dataType->slug }}@endif
 @endsection
@@ -7,15 +9,10 @@
 @section('wrapper_class', 'app-container')
 
 @prepend('after_style')
-{{--    <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">--}}
-
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
 @endprepend
 
 @prepend('after_script')
-{{--    <script type="text/javascript" src="{{ mix('js/bootstrap-vendor.js', 'backend') }}"></script>--}}
-{{--    <script type="text/javascript" src="{{ mix('js/bootstrap.js', 'backend') }}"></script>--}}
-
     <script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 @endprepend
 

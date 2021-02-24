@@ -47,47 +47,47 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.page-tab::v-deep {
+.page-tab {
   border-top: 1px solid #f6f6f6;
-  .q-tabs {
-    .q-tabs__arrow--left,
-    .q-tabs__arrow--right {
-      background: #fff;
-    }
+}
+:deep(.q-tabs) {
+  .q-tabs__arrow--left,
+  .q-tabs__arrow--right {
+    background: #fff;
+  }
 
-    .q-tabs__arrow--left {
-      border-right: 1px solid #f6f6f6;
-    }
-    .q-tabs__arrow--right {
-      border-left: 1px solid #f6f6f6;
+  .q-tabs__arrow--left {
+    border-right: 1px solid #f6f6f6;
+  }
+  .q-tabs__arrow--right {
+    border-left: 1px solid #f6f6f6;
+  }
+}
+
+:deep(.q-tab) {
+  padding: 0 25px;
+  border-right: 1px solid #f6f6f6;
+  .close {
+    margin-right: -20px;
+    margin-left: 5px;
+    visibility: hidden;
+  }
+
+  &.active {
+    background-color: #f1f1f1;
+    & .close {
+      visibility: inherit;
     }
   }
 
-  .q-tab {
-    padding: 0 25px;
-    border-right: 1px solid #f6f6f6;
-    .close {
-      margin-right: -20px;
-      margin-left: 5px;
-      visibility: hidden;
-    }
+  &.q-tab--active .close,
+  &:hover .close {
+    visibility: inherit;
+  }
 
-    &.active {
-      background-color: #f1f1f1;
-      & .close {
-        visibility: inherit;
-      }
-    }
-
-    &.q-tab--active .close,
-    &:hover .close {
-      visibility: inherit;
-    }
-
-    @media (min-width: 1440px) {
-      .q-tab__content {
-        min-width: 64px;
-      }
+  @media (min-width: 1440px) {
+    .q-tab__content {
+      min-width: 64px;
     }
   }
 }
