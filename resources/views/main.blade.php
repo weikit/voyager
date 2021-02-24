@@ -21,7 +21,6 @@
     @endif
 
     @hasSection('use_layui')
-        <link rel="stylesheet" href="{{ mix('vendor/layui.css', 'backend') }}">
         <link rel="stylesheet" href="{{ mix('css/layui.css', 'backend') }}">
     @endif
 
@@ -59,7 +58,6 @@
     @endif
 
     @hasSection('use_layui')
-        <script type="text/javascript" src="{{ mix('vendor/layui.js', 'backend') }}"></script>
         <script type="text/javascript" src="{{ mix('js/layui.js', 'backend') }}"></script>
     @endif
 

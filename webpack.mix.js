@@ -41,12 +41,12 @@ mix
     __dirname + "/resources/assets/sass/bootstrap/index.scss",
     "css/bootstrap.css"
   )
-  .extract([], "vendor/bootstrap")
+  //   .extract([], "vendor/bootstrap")
 
   // Layui
   .js(__dirname + "/resources/assets/js/layui/index.js", "js/layui.js")
-  .sass(__dirname + "/resources/assets/sass/layui/index.scss", "css/layui.css")
-  .extract(["layui-src"], "vendor/layui");
+  .sass(__dirname + "/resources/assets/sass/layui/index.scss", "css/layui.css");
+//   .extract(["layui-src"], "vendor/layui"); // TODO layui-src extract 会影响其他js导致js不执行???
 
 if (!mix.inProduction()) {
   mix.sourceMaps();
