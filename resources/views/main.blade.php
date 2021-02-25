@@ -53,7 +53,7 @@
     @endif
 
     @hasSection('use_bootstrap')
-        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>
+{{--        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>--}}
         <script type="text/javascript" src="{{ mix('js/bootstrap.js', 'backend') }}"></script>
     @endif
 
