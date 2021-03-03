@@ -26,6 +26,11 @@ const config = (window.G = {
     options: {},
     appOptions: {},
   },
+  vuetify: {
+    id: "#app",
+    options: {},
+    appOptions: {},
+  },
   ...(window.G || {}),
 });
 

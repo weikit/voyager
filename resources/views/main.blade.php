@@ -12,10 +12,6 @@
 
     <link rel="stylesheet" href="{{ mix('css/common.css', 'backend') }}">
 
-    @hasSection('use_quasar')
-    <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">
-    @endif
-
     @hasSection('use_bootstrap')
         <link rel="stylesheet" href="{{ mix('css/bootstrap.css', 'backend') }}">
     @endif
@@ -24,13 +20,21 @@
         <link rel="stylesheet" href="{{ mix('css/layui.css', 'backend') }}">
     @endif
 
+    @hasSection('use_vuetify')
+        <link rel="stylesheet" href="{{ mix('css/vuetify.css', 'backend') }}">
+    @endif
+
+    @hasSection('use_quasar')
+        <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">
+    @endif
+
     @stack('after_style')
 </head>
 
-<body class="voyager @yield('body_class')">
+<body class="body @yield('body_class')">
     @yield('before_content')
 
-    <div id="@yield('wrapper_id', 'app')" class="@yield('wrapper_class')">
+    <div id="@yield('wrap_id', 'app')" class="@yield('wrap_class')">
     @hasSection('wrap_content')
         @yield('wrap_content')
     @endif
@@ -47,18 +51,23 @@
     <script type="text/javascript" src="{{ mix('js/manifest.js', 'backend') }}"></script>
     <script type="text/javascript" src="{{ mix('vendor/common.js', 'backend') }}"></script>
 
-    @hasSection('use_quasar')
-        <script type="text/javascript" src="{{ mix('vendor/quasar.js', 'backend') }}"></script>
-        <script type="text/javascript" src="{{ mix('js/quasar.js', 'backend') }}"></script>
-    @endif
-
     @hasSection('use_bootstrap')
-{{--        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>--}}
+        {{--        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>--}}
         <script type="text/javascript" src="{{ mix('js/bootstrap.js', 'backend') }}"></script>
     @endif
 
     @hasSection('use_layui')
         <script type="text/javascript" src="{{ mix('js/layui.js', 'backend') }}"></script>
+    @endif
+
+    @hasSection('use_vuetify')
+        <script type="text/javascript" src="{{ mix('vendor/vuetify.js', 'backend') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/vuetify.js', 'backend') }}"></script>
+    @endif
+
+    @hasSection('use_quasar')
+        <script type="text/javascript" src="{{ mix('vendor/quasar.js', 'backend') }}"></script>
+        <script type="text/javascript" src="{{ mix('js/quasar.js', 'backend') }}"></script>
     @endif
 
     @stack('after_script')

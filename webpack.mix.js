@@ -10,12 +10,32 @@ if (__dirname.indexOf("/modules/") >= 0) {
 mix.setPublicPath(publicPath);
 
 mix
+  .version()
   .setResourceRoot("../") // set resource path to /backend/
+  // @see https://github.com/JeffreyWay/laravel-mix/issues/2569#issuecomment-718251713
+  .webpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/i,
+          resolve: { byDependency: { esm: { fullySpecified: false } } },
+        },
+      ],
+    },
+  })
   .sass(__dirname + "/resources/assets/sass/common.scss", "css/common.css")
   .extract({
     to: "vendor/common",
     test(mod) {
-      const modules = ["axios", "lodash-es", "jquery", "vue"];
+      const modules = [
+        "axios",
+        "lodash-es",
+        "jquery",
+        "@vue",
+        "vue",
+        "css-loader",
+        "style-loader",
+      ];
       const name = mod.nameForCondition();
       return (
         /resources\/assets\/js\/common\//.test(name) ||
@@ -25,6 +45,27 @@ mix
       );
     },
   })
+
+  // Layui
+  .js(__dirname + "/resources/assets/js/layui/index.js", "js/layui.js")
+  .sass(__dirname + "/resources/assets/sass/layui/index.scss", "css/layui.css")
+  //   .extract(["layui-src"], "vendor/layui"); // TODO layui-src extract 会影响其他js导致js不执行???
+
+  // Bootstrap
+  .js(__dirname + "/resources/assets/js/bootstrap/index.js", "js/bootstrap.js")
+  .sass(
+    __dirname + "/resources/assets/sass/bootstrap/index.scss",
+    "css/bootstrap.css"
+  )
+  .extract(["bootstrap"], "vendor/bootstrap")
+
+  // Vuetify
+  .js(__dirname + "/resources/assets/js/vuetify/index.js", "js/vuetify.js")
+  .sass(
+    __dirname + "/resources/assets/sass/vuetify/index.scss",
+    "css/vuetify.css"
+  )
+  .extract(["vuetify"], "vendor/vuetify")
   .vue({ version: 3 })
 
   // Quasar
@@ -34,19 +75,7 @@ mix
     "css/quasar.css"
   )
   .extract(["quasar"], "vendor/quasar")
-
-  // Bootstrap
-  .js(__dirname + "/resources/assets/js/bootstrap/index.js", "js/bootstrap.js")
-  .sass(
-    __dirname + "/resources/assets/sass/bootstrap/index.scss",
-    "css/bootstrap.css"
-  )
-  //   .extract([], "vendor/bootstrap")
-
-  // Layui
-  .js(__dirname + "/resources/assets/js/layui/index.js", "js/layui.js")
-  .sass(__dirname + "/resources/assets/sass/layui/index.scss", "css/layui.css");
-//   .extract(["layui-src"], "vendor/layui"); // TODO layui-src extract 会影响其他js导致js不执行???
+  .vue({ version: 3 });
 
 if (!mix.inProduction()) {
   mix.sourceMaps();

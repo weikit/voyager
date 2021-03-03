@@ -1,3 +1,2 @@
 import jQuery from 'jquery';
-
-console.log(jQuery);
+import bootstrap from 'bootstrap';
