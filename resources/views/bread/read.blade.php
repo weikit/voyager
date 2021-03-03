@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="panel panel-bordered" style="padding-bottom:5px;">
+                <div class="card" style="padding-bottom:5px;">
                     <!-- form start -->
                     @foreach($dataType->readRows as $row)
                         @php
@@ -44,11 +44,11 @@
                             $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_read'};
                         }
                         @endphp
-                        <div class="panel-heading" style="border-bottom:0;">
-                            <h3 class="panel-title">{{ $row->getTranslatedAttribute('display_name') }}</h3>
+                        <div class="card-header" style="border-bottom:0;">
+                            <h3 class="card-title">{{ $row->getTranslatedAttribute('display_name') }}</h3>
                         </div>
 
-                        <div class="panel-body" style="padding-top:0;">
+                        <div class="card-body" style="padding-top:0;">
                             @if (isset($row->details->view))
                                 @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => 'read', 'view' => 'read', 'options' => $row->details])
                             @elseif($row->type == "image")
@@ -128,7 +128,7 @@
                                 @include('voyager::multilingual.input-hidden-bread-read')
                                 <p>{{ $dataTypeContent->{$row->field} }}</p>
                             @endif
-                        </div><!-- panel-body -->
+                        </div><!-- card-body -->
                         @if(!$loop->last)
                             <hr style="margin:0;">
                         @endif

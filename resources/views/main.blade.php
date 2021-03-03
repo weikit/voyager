@@ -28,13 +28,15 @@
         <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">
     @endif
 
+    @yield('css')
+
     @stack('after_style')
 </head>
 
 <body class="body @yield('body_class')">
     @yield('before_content')
 
-    <div id="@yield('wrap_id', 'app')" class="@yield('wrap_class')">
+    <div id="@yield('wrap_id', 'app')" class="content @yield('wrap_class')">
     @hasSection('wrap_content')
         @yield('wrap_content')
     @endif
@@ -69,6 +71,8 @@
         <script type="text/javascript" src="{{ mix('vendor/quasar.js', 'backend') }}"></script>
         <script type="text/javascript" src="{{ mix('js/quasar.js', 'backend') }}"></script>
     @endif
+
+    @yield('javascript')
 
     @stack('after_script')
 </body>

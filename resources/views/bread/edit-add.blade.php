@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="panel panel-bordered">
+                <div class="card">
                     <!-- form start -->
                     <form role="form"
                             class="form-edit-add"
@@ -38,7 +38,7 @@
                         <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
 
-                        <div class="panel-body">
+                        <div class="card-body">
 
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
@@ -90,9 +90,9 @@
                                 </div>
                             @endforeach
 
-                        </div><!-- panel-body -->
+                        </div><!-- card-body -->
 
-                        <div class="panel-footer">
+                        <div class="card-footer">
                             @section('submit-buttons')
                                 <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
                             @stop
