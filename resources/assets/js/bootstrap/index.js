@@ -1,2 +1,2 @@
-import jQuery from 'jquery';
-import bootstrap from 'bootstrap';
+import "./boot/browser";
+import "bootstrap/dist/js/bootstrap";

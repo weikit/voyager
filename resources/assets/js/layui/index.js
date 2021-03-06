@@ -1,6 +1,7 @@
 import "layui-src/src/layui";
 import "layui-src/src/lay/all";
 import "layui-src/src/lay/modules/jquery";
+import "./boot/browser";
 
 window.jQuery = window.$ = layui.$; // jQuery优先加载到全局
 

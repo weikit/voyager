@@ -28,6 +28,10 @@
         <link rel="stylesheet" href="{{ mix('css/quasar.css', 'backend') }}">
     @endif
 
+    @hasSection('use_livewire')
+        @livewireStyles
+    @endif
+
     @yield('css')
 
     @stack('after_style')
@@ -54,7 +58,7 @@
     <script type="text/javascript" src="{{ mix('vendor/common.js', 'backend') }}"></script>
 
     @hasSection('use_bootstrap')
-        {{--        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>--}}
+        <script type="text/javascript" src="{{ mix('vendor/bootstrap.js', 'backend') }}"></script>
         <script type="text/javascript" src="{{ mix('js/bootstrap.js', 'backend') }}"></script>
     @endif
 
@@ -70,6 +74,10 @@
     @hasSection('use_quasar')
         <script type="text/javascript" src="{{ mix('vendor/quasar.js', 'backend') }}"></script>
         <script type="text/javascript" src="{{ mix('js/quasar.js', 'backend') }}"></script>
+    @endif
+
+    @hasSection('use_livewire')
+        @livewireScripts
     @endif
 
     @yield('javascript')

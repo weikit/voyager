@@ -23,7 +23,10 @@ mix
       ],
     },
   })
-  .sass(__dirname + "/resources/assets/sass/common.scss", "css/common.css")
+  .sass(
+    __dirname + "/resources/assets/sass/common/index.scss",
+    "css/common.css"
+  )
   .extract({
     to: "vendor/common",
     test(mod) {
@@ -57,7 +60,7 @@ mix
     __dirname + "/resources/assets/sass/bootstrap/index.scss",
     "css/bootstrap.css"
   )
-  .extract(["bootstrap"], "vendor/bootstrap")
+  .extract(["datatables", "@popperjs", "bootstrap"], "vendor/bootstrap")
 
   // Vuetify
   .js(__dirname + "/resources/assets/js/vuetify/index.js", "js/vuetify.js")
